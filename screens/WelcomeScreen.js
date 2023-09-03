@@ -5,8 +5,11 @@ import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { themeColors } from '../theme'
 import { StatusBar } from 'expo-status-bar'
+import { useNavigation } from '@react-navigation/native'
 
 export default function WelcomeScreen() {
+  const navigation = useNavigation()
+
   return (
     <SafeAreaView
       className='flex-1'
@@ -35,7 +38,7 @@ export default function WelcomeScreen() {
             <Text className='text-white font-semibold'>
               Already have an account ?
             </Text>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('Login')}>
               <Text className='font-semibold text-yellow-400'>Log In</Text>
             </TouchableOpacity>
           </View>
