@@ -6,9 +6,25 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { themeColors } from '../theme'
 import { useNavigation } from '@react-navigation/native'
 import { ArrowLeftIcon } from 'react-native-heroicons/solid'
+import { useState } from 'react'
+import { signInWithEmailAndPassword } from 'firebase/auth'
+import { auth } from '../config/firebase'
 
 export default function LoginScreen() {
   const navigation = useNavigation()
+
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const handleSubmit = async () => {
+    if (email && password) {
+      try {
+        await signInWithEmailAndPassword(auth, email, password)
+      } catch (error) {
+        console.log('got error: ' + error.message)
+      }
+    }
+  }
 
   return (
     <View className='flex-1' style={{ backgroundColor: themeColors.bg }}>
@@ -38,17 +54,24 @@ export default function LoginScreen() {
           <TextInput
             className='p-4 bg-gray-100 text-gray-700 rounded-2xl mb-3'
             placeholder='Enter Email'
+            value={email}
+            onChangeText={(value) => setEmail(value)}
           />
           <Text className='text-gray-700 ml-4'>Password</Text>
           <TextInput
             className='p-4 bg-gray-100 text-gray-700 rounded-2xl mb-3'
             placeholder='Enter Password'
             secureTextEntry
+            value={password}
+            onChangeText={(value) => setPassword(value)}
           />
           <TouchableOpacity className='flex items-end mb-5'>
             <Text className='text-gray-700'>Forgot Password ?</Text>
           </TouchableOpacity>
-          <TouchableOpacity className='py-3 bg-yellow-400 rounded-xl'>
+          <TouchableOpacity
+            className='py-3 bg-yellow-400 rounded-xl'
+            onPress={handleSubmit}
+          >
             <Text className='font-xl font-bold text-center text-gray-700'>
               Login
             </Text>
