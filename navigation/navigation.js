@@ -20,9 +20,9 @@ export default function Navigation() {
       <NavigationContainer>
         <Stack.Navigator initialRouteName='Home'>
           <Stack.Screen
-            name='Welcome'
+            name='Home'
             options={{ headerShown: false }}
-            component={WelcomeScreen}
+            component={HomeScreen}
           />
         </Stack.Navigator>
       </NavigationContainer>
@@ -30,11 +30,11 @@ export default function Navigation() {
   } else {
     return (
       <NavigationContainer>
-        <Stack.Navigator initialRouteName='Home'>
+        <Stack.Navigator initialRouteName='Welcome'>
           <Stack.Screen
-            name='Home'
+            name='Welcome'
             options={{ headerShown: false }}
-            component={HomeScreen}
+            component={WelcomeScreen}
           />
           <Stack.Screen
             name='Login'

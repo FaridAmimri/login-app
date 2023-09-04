@@ -29,7 +29,10 @@ export default function WelcomeScreen() {
         </View>
 
         <View className='space-y-4'>
-          <TouchableOpacity className='py-3 bg-yellow-400 mx-7 rounded-xl'>
+          <TouchableOpacity
+            className='py-3 bg-yellow-400 mx-7 rounded-xl'
+            onPress={() => navigation.navigate('SignUp')}
+          >
             <Text className='text-xl font-bold text-center text-gray-700'>
               Sign Up
             </Text>
